@@ -1,22 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cardiac Arrhythmia Classification</title>
+  <meta charset="UTF-8">
+</head>
 <div class="formbold-main-wrapper">
 
     <div class="formbold-form-wrapper">
       
-      <img src="your-image-url-here.jpg">
-  
       <form action="/predict" method="POST">
         <div class="formbold-form-title">
-          <h2 class="">Register now</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt.
+          <h2 class="">Cardiac Arrhythmia Classification</h2>
+          <p align="justify">
+            Cardiac arrhythmia is a condition that affects the normal rhythm of the heart. It occurs when the electrical signals that control the heartbeat are disrupted or abnormal. This can cause the heart to beat too fast, too slow, or irregularly. Some cardiac arrhythmias are harmless and may not cause any symptoms. However, some arrhythmias can be serious and lead to complications such as stroke, heart failure, or sudden cardiac death
           </p>
         </div>
-  
+        <img src="{{url_for('static', filename='img/heartimage.png')}}" alt="" height="200" width="200" >
+        <br>
+        <br>
         <div class="formbold-input-flex">
           <div>
             <label for="firstname" class="formbold-form-label">
-              Feature 1
+              Q-T_Int
             </label>
             <input
               type="number"
@@ -24,39 +29,43 @@
               name="f1"
               id="f1"
               class="formbold-form-input"
+              required
             />
           </div>
           <div>
-            <label for="lastname" class="formbold-form-label"> Feature 2 </label>
+            <label for="lastname" class="formbold-form-label"> DII172 </label>
             <input
               type="number"
               step="any"
               name="f2"
               id="f2"
               class="formbold-form-input"
+              required
             />
           </div>
         </div>
   
         <div class="formbold-input-flex">
           <div>
-            <label for="email" class="formbold-form-label"> Feature 3 </label>
+            <label for="email" class="formbold-form-label"> P_Int </label>
             <input
               type="number"
               step="any"
               name="f3"
               id="f3"
               class="formbold-form-input"
+              required
             />
           </div>
           <div>
-            <label for="phone" class="formbold-form-label"> Feature 4 </label>
+            <label for="phone" class="formbold-form-label"> P-R_Int </label>
             <input
               type="number"
               step="any"
               name="f4"
               id="f4"
               class="formbold-form-input"
+              required
             />
           </div>
         </div>
@@ -64,7 +73,7 @@
         <div class="formbold-input-flex">
             <div>
               <label for="firstname" class="formbold-form-label">
-                Feature 5
+                V1228
               </label>
               <input
                 type="number"
@@ -72,62 +81,68 @@
                 name="f5"
                 id="f5"
                 class="formbold-form-input"
+                required
               />
             </div>
             <div>
-              <label for="lastname" class="formbold-form-label"> Feature 6 </label>
+              <label for="lastname" class="formbold-form-label"> V5262 </label>
               <input
                 type="number"
                 step="any"
                 name="f6"
                 id="f6"
                 class="formbold-form-input"
+                required
               />
             </div>
           </div>
   
         <div class="formbold-input-flex">
           <div>
-            <label for="state" class="formbold-form-label"> Feature 7 </label>
+            <label for="state" class="formbold-form-label"> V302 </label>
             <input
               type="number"
               step="any"
               name="f7"
               id="f7"
               class="formbold-form-input"
+              required
             />
           </div>
           <div>
-            <label for="country" class="formbold-form-label"> Feature 8 </label>
+            <label for="country" class="formbold-form-label"> V6272 </label>
             <input
               type="number"
               step="any"
               name="f8"
               id="f8"
               class="formbold-form-input"
+              required
             />
           </div>
         </div>
   
         <div class="formbold-input-flex">
           <div>
-            <label for="post" class="formbold-form-label"> Feature 9 </label>
+            <label for="post" class="formbold-form-label"> QRS_Dur </label>
             <input
               type="number"
               step="any"
               name="f9"
               id="f9"
               class="formbold-form-input"
+              required
             />
           </div>
           <div>
-            <label for="area" class="formbold-form-label"> Feature 10 </label>
+            <label for="area" class="formbold-form-label"> V2230 </label>
             <input
               type="number"
               step="any"
               name="f10"
               id="f10"
               class="formbold-form-input"
+              required
             />
           </div>
         </div>
@@ -139,9 +154,249 @@
             </p>
           </div>
       </form>
+      <div class="formbold-input-group">
+        <label class="formbold-form-label">
+          Select a model to display plots
+        </label>
+
+        <select class="formbold-form-select" name="pickplot" id="plot" onchange="showImage()">
+          <option value="none">None</option>
+          <option value="knn">K Nearest Neighbours</option>
+          <option value="lr">Logistic Regression</option>
+          <option value="dtc">Decision Tree Classifier</option>
+          <option value="svclin">Linear SVM</option>
+          <option value="svcrbf">SVM with RBF Kernel</option>
+          <option value="rfc">Random Forest Classifier</option>
+          <option value="stackingclf">Stacking Classifier</option>
+        </select>
+        <img src="{{url_for('static', filename='img/cm_0.png')}}" id="knncm" style="display: none;" alt="" >
+        <img src="{{url_for('static', filename='img/roc_0.png')}}" id="knnroc" style="display: none;" alt="" >
+
+        <img src="{{url_for('static', filename='img/cm_1.png')}}" id="lrcm" style="display: none;" alt="" >
+        <img src="{{url_for('static', filename='img/roc_1.png')}}" id="lrroc" style="display: none;" alt="" >
+
+        <img src="{{url_for('static', filename='img/cm_2.png')}}" id="dtccm" style="display: none;" alt="" >
+        <img src="{{url_for('static', filename='img/roc_2.png')}}" id="dtcroc" style="display: none;" alt="" >
+
+        <img src="{{url_for('static', filename='img/cm_3.png')}}" id="svclincm" style="display: none;" alt="" >
+        <img src="{{url_for('static', filename='img/roc_3.png')}}" id="svclinroc" style="display: none;" alt="" >
+
+        <img src="{{url_for('static', filename='img/cm_4.png')}}" id="svcrbfcm" style="display: none;" alt="" >
+        <img src="{{url_for('static', filename='img/roc_4.png')}}" id="svcrbfroc" style="display: none;" alt="" >
+
+        <img src="{{url_for('static', filename='img/cm_5.png')}}" id="rfccm" style="display: none;" alt="" >
+        <img src="{{url_for('static', filename='img/roc_5.png')}}" id="rfcroc" style="display: none;" alt="" >
+
+        <img src="{{url_for('static', filename='img/cm_6.png')}}" id="stackingclfcm" style="display: none;" alt="">
+        <img src="{{url_for('static', filename='img/roc_6.png')}}" id="stackingclfroc" style="display: none;" alt="">
+      </div>
     </div>
   </div>
+  </html>
+  <script type="text/javascript">
+    function showImage() {
+      sel = document.getElementById("plot").value;
+      if(sel == "knn") {
+        document.getElementById("knncm").style.display = 'block';
+        document.getElementById("knnroc").style.display = 'block';
+
+        document.getElementById("lrcm").style.display = 'none';
+        document.getElementById("lrroc").style.display = 'none';
+
+        document.getElementById("dtccm").style.display = 'none';
+        document.getElementById("dtcroc").style.display = 'none';
+
+        document.getElementById("svclincm").style.display = 'none';
+        document.getElementById("svclinroc").style.display = 'none';
+
+        document.getElementById("svcrbfcm").style.display = 'none';
+        document.getElementById("svcrbfroc").style.display = 'none';
+
+        document.getElementById("rfccm").style.display = 'none';
+        document.getElementById("rfcroc").style.display = 'none';
+
+        document.getElementById("stackingclfcm").style.display = 'none';
+        document.getElementById("stackingclfroc").style.display = 'none';
+      }
+      else if(sel == "lr"){
+        document.getElementById("knncm").style.display = 'none';
+        document.getElementById("knnroc").style.display = 'none';
+
+        document.getElementById("lrcm").style.display = 'block';
+        document.getElementById("lrroc").style.display = 'block';
+
+        document.getElementById("dtccm").style.display = 'none';
+        document.getElementById("dtcroc").style.display = 'none';
+
+        document.getElementById("svclincm").style.display = 'none';
+        document.getElementById("svclinroc").style.display = 'none';
+
+        document.getElementById("svcrbfcm").style.display = 'none';
+        document.getElementById("svcrbfroc").style.display = 'none';
+
+        document.getElementById("rfccm").style.display = 'none';
+        document.getElementById("rfcroc").style.display = 'none';
+
+        document.getElementById("stackingclfcm").style.display = 'none';
+        document.getElementById("stackingclfroc").style.display = 'none';
+      }
+
+      else if(sel == "dtc"){
+        document.getElementById("knncm").style.display = 'none';
+        document.getElementById("knnroc").style.display = 'none';
+
+        document.getElementById("lrcm").style.display = 'none';
+        document.getElementById("lrroc").style.display = 'none';
+
+        document.getElementById("dtccm").style.display = 'block';
+        document.getElementById("dtcroc").style.display = 'block';
+
+        document.getElementById("svclincm").style.display = 'none';
+        document.getElementById("svclinroc").style.display = 'none';
+
+        document.getElementById("svcrbfcm").style.display = 'none';
+        document.getElementById("svcrbfroc").style.display = 'none';
+
+        document.getElementById("rfccm").style.display = 'none';
+        document.getElementById("rfcroc").style.display = 'none';
+
+        document.getElementById("stackingclfcm").style.display = 'none';
+        document.getElementById("stackingclfroc").style.display = 'none';
+      }
+
+      else if(sel == "svclin"){
+        document.getElementById("knncm").style.display = 'none';
+        document.getElementById("knnroc").style.display = 'none';
+
+        document.getElementById("lrcm").style.display = 'none';
+        document.getElementById("lrroc").style.display = 'none';
+
+        document.getElementById("dtccm").style.display = 'none';
+        document.getElementById("dtcroc").style.display = 'none';
+
+        document.getElementById("svclincm").style.display = 'block';
+        document.getElementById("svclinroc").style.display = 'block';
+
+        document.getElementById("svcrbfcm").style.display = 'none';
+        document.getElementById("svcrbfroc").style.display = 'none';
+
+        document.getElementById("rfccm").style.display = 'none';
+        document.getElementById("rfcroc").style.display = 'none';
+
+        document.getElementById("stackingclfcm").style.display = 'none';
+        document.getElementById("stackingclfroc").style.display = 'none';
+      }
+
+      else if(sel == "svcrbf"){
+        document.getElementById("knncm").style.display = 'none';
+        document.getElementById("knnroc").style.display = 'none';
+
+        document.getElementById("lrcm").style.display = 'none';
+        document.getElementById("lrroc").style.display = 'none';
+
+        document.getElementById("dtccm").style.display = 'none';
+        document.getElementById("dtcroc").style.display = 'none';
+
+        document.getElementById("svclincm").style.display = 'none';
+        document.getElementById("svclinroc").style.display = 'none';
+
+        document.getElementById("svcrbfcm").style.display = 'block';
+        document.getElementById("svcrbfroc").style.display = 'block';
+
+        document.getElementById("rfccm").style.display = 'none';
+        document.getElementById("rfcroc").style.display = 'none';
+
+        document.getElementById("stackingclfcm").style.display = 'none';
+        document.getElementById("stackingclfroc").style.display = 'none';
+      }
+
+      else if(sel == "rfc"){
+        document.getElementById("knncm").style.display = 'none';
+        document.getElementById("knnroc").style.display = 'none';
+
+        document.getElementById("lrcm").style.display = 'none';
+        document.getElementById("lrroc").style.display = 'none';
+
+        document.getElementById("dtccm").style.display = 'none';
+        document.getElementById("dtcroc").style.display = 'none';
+
+        document.getElementById("svclincm").style.display = 'none';
+        document.getElementById("svclinroc").style.display = 'none';
+
+        document.getElementById("svcrbfcm").style.display = 'none';
+        document.getElementById("svcrbfroc").style.display = 'none';
+
+        document.getElementById("rfccm").style.display = 'block';
+        document.getElementById("rfcroc").style.display = 'block';
+
+        document.getElementById("stackingclfcm").style.display = 'none';
+        document.getElementById("stackingclfroc").style.display = 'none';
+      }
+
+      else if(sel == "stackingclf"){
+        document.getElementById("knncm").style.display = 'none';
+        document.getElementById("knnroc").style.display = 'none';
+
+        document.getElementById("lrcm").style.display = 'none';
+        document.getElementById("lrroc").style.display = 'none';
+
+        document.getElementById("dtccm").style.display = 'none';
+        document.getElementById("dtcroc").style.display = 'none';
+
+        document.getElementById("svclincm").style.display = 'none';
+        document.getElementById("svclinroc").style.display = 'none';
+
+        document.getElementById("svcrbfcm").style.display = 'none';
+        document.getElementById("svcrbfroc").style.display = 'none';
+
+        document.getElementById("rfccm").style.display = 'none';
+        document.getElementById("rfcroc").style.display = 'none';
+
+        document.getElementById("stackingclfcm").style.display = 'block';
+        document.getElementById("stackingclfroc").style.display = 'block';
+      }
+
+      else{
+        document.getElementById("knncm").style.display = 'none';
+        document.getElementById("knnroc").style.display = 'none';
+
+        document.getElementById("lrcm").style.display = 'none';
+        document.getElementById("lrroc").style.display = 'none';
+
+        document.getElementById("dtccm").style.display = 'none';
+        document.getElementById("dtcroc").style.display = 'none';
+
+        document.getElementById("svclincm").style.display = 'none';
+        document.getElementById("svclinroc").style.display = 'none';
+
+        document.getElementById("svcrbfcm").style.display = 'none';
+        document.getElementById("svcrbfroc").style.display = 'none';
+
+        document.getElementById("rfccm").style.display = 'none';
+        document.getElementById("rfcroc").style.display = 'none';
+
+        document.getElementById("stackingclfcm").style.display = 'none';
+        document.getElementById("stackingclfroc").style.display = 'none';
+      }
+    }
+  </script>
   <style>
+    img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  }
+  .formbold-form-select {
+    width: 100%;
+    padding: 12px 22px;
+    border-radius: 5px;
+    border: 1px solid #dde3ec;
+    background: #ffffff;
+    font-size: 16px;
+    color: #536387;
+    outline: none;
+    resize: none;
+  }
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     * {
       margin: 0;

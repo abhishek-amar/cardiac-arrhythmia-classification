@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, redirect, render_template, request, url_for
 from joblib import load
 import numpy as np
 import warnings
@@ -25,9 +25,15 @@ class_names = ["Normal",
                "Others"]
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods = ['POST', 'GET'])
 def index():
-    return render_template('index.html')
+    error = " "
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials. Please try again.'
+        else:
+            return render_template('index.html', error = error)
+    return render_template('login.html', error = error)
 
 @app.route('/predict', methods = ['POST', 'GET'])
 def predict():
