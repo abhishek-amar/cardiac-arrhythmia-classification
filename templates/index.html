@@ -171,24 +171,31 @@
         </select>
         <img src="{{url_for('static', filename='img/cm_0.png')}}" id="knncm" style="display: none;" alt="" >
         <img src="{{url_for('static', filename='img/roc_0.png')}}" id="knnroc" style="display: none;" alt="" >
+        <img src="{{url_for('static', filename='img/cv_0.png')}}" id="knncv" style="display: none;" alt="" >
 
         <img src="{{url_for('static', filename='img/cm_1.png')}}" id="lrcm" style="display: none;" alt="" >
         <img src="{{url_for('static', filename='img/roc_1.png')}}" id="lrroc" style="display: none;" alt="" >
+        <img src="{{url_for('static', filename='img/cv_1.png')}}" id="lrcv" style="display: none;" alt="" >
 
         <img src="{{url_for('static', filename='img/cm_2.png')}}" id="dtccm" style="display: none;" alt="" >
         <img src="{{url_for('static', filename='img/roc_2.png')}}" id="dtcroc" style="display: none;" alt="" >
+        <img src="{{url_for('static', filename='img/cv_2.png')}}" id="dtccv" style="display: none;" alt="" >
 
         <img src="{{url_for('static', filename='img/cm_3.png')}}" id="svclincm" style="display: none;" alt="" >
         <img src="{{url_for('static', filename='img/roc_3.png')}}" id="svclinroc" style="display: none;" alt="" >
+        <img src="{{url_for('static', filename='img/cv_3.png')}}" id="svclincv" style="display: none;" alt="" >
 
         <img src="{{url_for('static', filename='img/cm_4.png')}}" id="svcrbfcm" style="display: none;" alt="" >
         <img src="{{url_for('static', filename='img/roc_4.png')}}" id="svcrbfroc" style="display: none;" alt="" >
+        <img src="{{url_for('static', filename='img/cv_4.png')}}" id="svcrbfcv" style="display: none;" alt="" >
 
         <img src="{{url_for('static', filename='img/cm_5.png')}}" id="rfccm" style="display: none;" alt="" >
         <img src="{{url_for('static', filename='img/roc_5.png')}}" id="rfcroc" style="display: none;" alt="" >
+        <img src="{{url_for('static', filename='img/cv_5.png')}}" id="rfccv" style="display: none;" alt="" >
 
         <img src="{{url_for('static', filename='img/cm_6.png')}}" id="stackingclfcm" style="display: none;" alt="">
         <img src="{{url_for('static', filename='img/roc_6.png')}}" id="stackingclfroc" style="display: none;" alt="">
+        <img src="{{url_for('static', filename='img/cv_6.png')}}" id="stacklingclfcv" style="display: none;" alt="" >
       </div>
     </div>
   </div>
@@ -199,184 +206,240 @@
       if(sel == "knn") {
         document.getElementById("knncm").style.display = 'block';
         document.getElementById("knnroc").style.display = 'block';
+        document.getElementById("knncv").style.display = 'block';
 
         document.getElementById("lrcm").style.display = 'none';
         document.getElementById("lrroc").style.display = 'none';
+        document.getElementById("lrcv").style.display = 'none';
 
         document.getElementById("dtccm").style.display = 'none';
         document.getElementById("dtcroc").style.display = 'none';
+        document.getElementById("dtccv").style.display = 'none';
 
         document.getElementById("svclincm").style.display = 'none';
         document.getElementById("svclinroc").style.display = 'none';
+        document.getElementById("svclincv").style.display = 'none';
 
         document.getElementById("svcrbfcm").style.display = 'none';
-        document.getElementById("svcrbfroc").style.display = 'none';
+        document.getElementById("svcrbffroc").style.display = 'none';
+        document.getElementById("svcrfbcv").style.display = 'none';
 
         document.getElementById("rfccm").style.display = 'none';
         document.getElementById("rfcroc").style.display = 'none';
+        document.getElementById("rfccv").style.display = 'none';
 
         document.getElementById("stackingclfcm").style.display = 'none';
         document.getElementById("stackingclfroc").style.display = 'none';
+        document.getElementById("stackingclfcv").style.display = 'none';
       }
       else if(sel == "lr"){
         document.getElementById("knncm").style.display = 'none';
         document.getElementById("knnroc").style.display = 'none';
+        document.getElementById("knncv").style.display = 'none';
 
         document.getElementById("lrcm").style.display = 'block';
         document.getElementById("lrroc").style.display = 'block';
+        document.getElementById("lrcv").style.display = 'block';
 
         document.getElementById("dtccm").style.display = 'none';
         document.getElementById("dtcroc").style.display = 'none';
+        document.getElementById("dtccv").style.display = 'none';
 
         document.getElementById("svclincm").style.display = 'none';
         document.getElementById("svclinroc").style.display = 'none';
+        document.getElementById("svclincv").style.display = 'none';
 
         document.getElementById("svcrbfcm").style.display = 'none';
         document.getElementById("svcrbfroc").style.display = 'none';
+        document.getElementById("svcrbfcv").style.display = 'none';
 
         document.getElementById("rfccm").style.display = 'none';
         document.getElementById("rfcroc").style.display = 'none';
+        document.getElementById("rfccv").style.display = 'none';
 
         document.getElementById("stackingclfcm").style.display = 'none';
         document.getElementById("stackingclfroc").style.display = 'none';
+        document.getElementById("stackingclfcv").style.display = 'none';
       }
 
       else if(sel == "dtc"){
         document.getElementById("knncm").style.display = 'none';
         document.getElementById("knnroc").style.display = 'none';
+        document.getElementById("knncv").style.display = 'none';
 
         document.getElementById("lrcm").style.display = 'none';
         document.getElementById("lrroc").style.display = 'none';
+        document.getElementById("lrcv").style.display = 'none';
 
-        document.getElementById("dtccm").style.display = 'block';
-        document.getElementById("dtcroc").style.display = 'block';
+        document.getElementById("dtccm").style.display = 'dtc';
+        document.getElementById("dtcroc").style.display = 'dtc';
+        document.getElementById("dtccv").style.display = 'dtc';
 
         document.getElementById("svclincm").style.display = 'none';
         document.getElementById("svclinroc").style.display = 'none';
+        document.getElementById("svclincv").style.display = 'none';
 
         document.getElementById("svcrbfcm").style.display = 'none';
         document.getElementById("svcrbfroc").style.display = 'none';
+        document.getElementById("svcrbfcv").style.display = 'none';
 
         document.getElementById("rfccm").style.display = 'none';
         document.getElementById("rfcroc").style.display = 'none';
+        document.getElementById("rfccv").style.display = 'none';
 
         document.getElementById("stackingclfcm").style.display = 'none';
         document.getElementById("stackingclfroc").style.display = 'none';
+        document.getElementById("stackingclfcv").style.display = 'none';
       }
 
       else if(sel == "svclin"){
         document.getElementById("knncm").style.display = 'none';
         document.getElementById("knnroc").style.display = 'none';
+        document.getElementById("knncv").style.display = 'none';
 
         document.getElementById("lrcm").style.display = 'none';
         document.getElementById("lrroc").style.display = 'none';
+        document.getElementById("lrcv").style.display = 'none';
 
         document.getElementById("dtccm").style.display = 'none';
         document.getElementById("dtcroc").style.display = 'none';
+        document.getElementById("dtccv").style.display = 'none';
 
         document.getElementById("svclincm").style.display = 'block';
         document.getElementById("svclinroc").style.display = 'block';
+        document.getElementById("svclincv").style.display = 'block';
 
         document.getElementById("svcrbfcm").style.display = 'none';
         document.getElementById("svcrbfroc").style.display = 'none';
+        document.getElementById("svcrbfcv").style.display = 'none';
 
         document.getElementById("rfccm").style.display = 'none';
         document.getElementById("rfcroc").style.display = 'none';
+        document.getElementById("rfccv").style.display = 'none';
 
         document.getElementById("stackingclfcm").style.display = 'none';
         document.getElementById("stackingclfroc").style.display = 'none';
+        document.getElementById("stackingclfcv").style.display = 'none';
       }
 
       else if(sel == "svcrbf"){
         document.getElementById("knncm").style.display = 'none';
         document.getElementById("knnroc").style.display = 'none';
+        document.getElementById("knncv").style.display = 'none';
 
         document.getElementById("lrcm").style.display = 'none';
         document.getElementById("lrroc").style.display = 'none';
+        document.getElementById("lrcv").style.display = 'none';
 
         document.getElementById("dtccm").style.display = 'none';
         document.getElementById("dtcroc").style.display = 'none';
+        document.getElementById("dtccv").style.display = 'none';
 
         document.getElementById("svclincm").style.display = 'none';
         document.getElementById("svclinroc").style.display = 'none';
+        document.getElementById("svclincv").style.display = 'none';
 
         document.getElementById("svcrbfcm").style.display = 'block';
         document.getElementById("svcrbfroc").style.display = 'block';
+        document.getElementById("svcrbfcv").style.display = 'block';
 
         document.getElementById("rfccm").style.display = 'none';
         document.getElementById("rfcroc").style.display = 'none';
+        document.getElementById("rfccv").style.display = 'none';
 
         document.getElementById("stackingclfcm").style.display = 'none';
         document.getElementById("stackingclfroc").style.display = 'none';
+        document.getElementById("stackingclfcv").style.display = 'none';
       }
 
       else if(sel == "rfc"){
         document.getElementById("knncm").style.display = 'none';
         document.getElementById("knnroc").style.display = 'none';
+        document.getElementById("knncv").style.display = 'none';
 
         document.getElementById("lrcm").style.display = 'none';
         document.getElementById("lrroc").style.display = 'none';
+        document.getElementById("lrcv").style.display = 'none';
 
         document.getElementById("dtccm").style.display = 'none';
         document.getElementById("dtcroc").style.display = 'none';
+        document.getElementById("dtccv").style.display = 'none';
 
         document.getElementById("svclincm").style.display = 'none';
         document.getElementById("svclinroc").style.display = 'none';
+        document.getElementById("svclincv").style.display = 'none';
 
         document.getElementById("svcrbfcm").style.display = 'none';
         document.getElementById("svcrbfroc").style.display = 'none';
+        document.getElementById("svcrbfcv").style.display = 'none';
 
         document.getElementById("rfccm").style.display = 'block';
         document.getElementById("rfcroc").style.display = 'block';
+        document.getElementById("rfccv").style.display = 'block';
 
         document.getElementById("stackingclfcm").style.display = 'none';
         document.getElementById("stackingclfroc").style.display = 'none';
+        document.getElementById("stackingclfcv").style.display = 'none';
       }
 
       else if(sel == "stackingclf"){
         document.getElementById("knncm").style.display = 'none';
         document.getElementById("knnroc").style.display = 'none';
+        document.getElementById("knncv").style.display = 'none';
 
         document.getElementById("lrcm").style.display = 'none';
         document.getElementById("lrroc").style.display = 'none';
+        document.getElementById("lrcv").style.display = 'none';
 
         document.getElementById("dtccm").style.display = 'none';
         document.getElementById("dtcroc").style.display = 'none';
+        document.getElementById("dtccv").style.display = 'none';
 
         document.getElementById("svclincm").style.display = 'none';
         document.getElementById("svclinroc").style.display = 'none';
+        document.getElementById("svclincv").style.display = 'none';
 
         document.getElementById("svcrbfcm").style.display = 'none';
         document.getElementById("svcrbfroc").style.display = 'none';
+        document.getElementById("svcrbfcv").style.display = 'none';
 
         document.getElementById("rfccm").style.display = 'none';
         document.getElementById("rfcroc").style.display = 'none';
+        document.getElementById("rfccv").style.display = 'none';
 
         document.getElementById("stackingclfcm").style.display = 'block';
         document.getElementById("stackingclfroc").style.display = 'block';
+        document.getElementById("stackingclfcv").style.display = 'block';
       }
 
       else{
         document.getElementById("knncm").style.display = 'none';
         document.getElementById("knnroc").style.display = 'none';
+        document.getElementById("knncv").style.display = 'none';
 
         document.getElementById("lrcm").style.display = 'none';
         document.getElementById("lrroc").style.display = 'none';
+        document.getElementById("lrcv").style.display = 'none';
 
         document.getElementById("dtccm").style.display = 'none';
         document.getElementById("dtcroc").style.display = 'none';
+        document.getElementById("dtccv").style.display = 'none';
 
         document.getElementById("svclincm").style.display = 'none';
         document.getElementById("svclinroc").style.display = 'none';
+        document.getElementById("svclincv").style.display = 'none';
 
         document.getElementById("svcrbfcm").style.display = 'none';
         document.getElementById("svcrbfroc").style.display = 'none';
+        document.getElementById("svcrbfcv").style.display = 'none';
 
         document.getElementById("rfccm").style.display = 'none';
         document.getElementById("rfcroc").style.display = 'none';
+        document.getElementById("rfccv").style.display = 'none';
 
         document.getElementById("stackingclfcm").style.display = 'none';
         document.getElementById("stackingclfroc").style.display = 'none';
+        document.getElementById("stackingclfcv").style.display = 'none';
       }
     }
   </script>
