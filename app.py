@@ -39,19 +39,10 @@ def index():
 def predict():
     features = [float(x) for x in request.form.values()]
     scaled_features = scaler.transform([features])
-    print(features)
     cluster = gmm.predict(scaled_features)
     scaled_features = scaled_features[0, :]
-    print(scaled_features)
-    print(type(scaled_features))
-    print(cluster)
-    print(type(cluster))
     final = np.concatenate((scaled_features, cluster), axis = 0)
-    print(final)
-    print(type(final))
     prediction = stackingclf.predict([final])
-    print(f"Prediction is: {prediction}")
-    print(prediction[0])
     return render_template('index.html', pred = f"Predicted type of cardiac arrhythmia is: {class_names[int(prediction[0]) - 1]}")
 
 if __name__ == '__main__':
