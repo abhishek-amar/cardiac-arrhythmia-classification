@@ -43,7 +43,10 @@ def predict():
     scaled_features = scaled_features[0, :]
     final = np.concatenate((scaled_features, cluster), axis = 0)
     prediction = stackingclf.predict([final])
-    return render_template('index.html', pred = f"Predicted type of cardiac arrhythmia is: {class_names[int(prediction[0]) - 1]}")
+    if prediction[0] == 1:
+        return render_template('index.html', pred = f"Predicted type of cardiac arrhythmia is: {class_names[int(prediction[0]) - 1]}. No further medical attention required.")
+    else:
+        return render_template('index.html', pred = f"Predicted type of cardiac arrhythmia is: {class_names[int(prediction[0]) - 1]}. Further medical attention required.")
 
 if __name__ == '__main__':
     app.run(debug = True)
