@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login To Cardiac Arrhythmia Classification System</title>
+    <title>Sign Up For Cardiac Arrhythmia Classification System</title>
  
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -152,18 +152,18 @@ a{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form action="/" method="POST">
-        <h3>Login To Cardiac Arrhythmia Classification System</h3>
+    <form action="/signup" method="POST">
+        <h3>SignUp For Cardiac Arrhythmia Classification System</h3>
 
         <label for="username">Username</label>
         <input type="text" placeholder="Username" id="username" name="username" minlength="3" maxlength="20" pattern="^[a-zA-Z0-9_- ]{3,20}$" required>
 
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password" name="password" minlength="3" maxlength="20" pattern="^[a-zA-Z0-9_\- !@#$%^&*()]{3,20}$" required>
-        <label for="error">{{error}}</label>
-        <button>Log In</button>
+        <label for="error">{{message}}</label>
+        <button>Sign Up</button>
         <br>
-        <a href = "/signup">Sign Up</a>
+        <a href = "/">Log In</a>
     </form>
     
 </body>
