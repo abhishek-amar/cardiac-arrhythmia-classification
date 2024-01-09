@@ -85,6 +85,8 @@ def signup():
 @app.route('/predict', methods = ['POST', 'GET'])
 def predict():
     features = [float(x) for x in request.form.values()]
+    if len(features) != 10:
+        return render_template('login.html')
     scaled_features = scaler.transform([features])
     cluster = gmm.predict(scaled_features)
     scaled_features = scaled_features[0, :]
